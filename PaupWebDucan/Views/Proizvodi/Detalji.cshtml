@@ -1,0 +1,44 @@
+﻿@using PaupWebDucan.Models
+@model Proizvod
+
+@{
+    ViewBag.Title = "Detalji";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    string ostecen = "";
+    if (@Model.Ostecen == 'D')
+    {
+        ostecen = "Da";
+    }
+    else
+    {
+        ostecen = "Ne";
+    }
+}
+
+<h2>Detalji o proizvodu</h2>
+Ime proizvoda: @Model.ImeProizvoda
+<br />
+Boja proizvoda: @Model.BojaProizvoda
+<br />
+Oštećen: @Model.Ostecen
+<br />
+Godina modela: @Model.GodinaModela
+<br />
+Dostupnost: @(Model.Dostupnost ? "Dostupan" : "Nedostupan")
+<br />
+Kontrolni broj: @Model.KontrolniBroj
+<br />
+Datum proizvodnje: @Model.DatumProizvodnje.ToString("dd.MM.yyyy")
+<br />
+
+@if (!Model.Dostupnost)
+{
+    <p style="color: red;">
+        Proizvod je nedostupan.
+    </p>
+    <p>
+        Broj dana za nabavu: @Model.DanaZaNabavu
+    </p>
+}
+

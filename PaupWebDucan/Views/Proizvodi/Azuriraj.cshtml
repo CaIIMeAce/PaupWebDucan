@@ -1,0 +1,87 @@
+﻿@using PaupWebDucan.Models
+@model Proizvod
+@{
+    ViewBag.Title = "Ažuriranje: " + " " + Model.ImeProizvoda + " " + Model.SkladisniBroj;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Ažuriranje podataka o proizvodu</h2>
+<h3>@Model.ImeProizvoda</h3>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "Ispravite podatke!");
+
+    <table>
+        <tr>
+            <td>@Html.LabelFor(model => model.SkladisniBroj) </td>
+            <td>
+                @Html.HiddenFor(model => model.SkladisniBroj)
+                @Html.DisplayFor(model => model.SkladisniBroj)
+            </td>
+        </tr>
+
+    <tr>
+        <td>@Html.LabelFor(model => model.ImeProizvoda) </td>
+        <td>
+            @Html.TextBoxFor(model => model.ImeProizvoda)
+            @Html.ValidationMessageFor(model => model.ImeProizvoda)
+        </td>
+    </tr>
+
+    <tr>
+        <td>@Html.LabelFor(model => model.BojaProizvoda) </td>
+        <td>
+            @Html.TextBoxFor(model => model.BojaProizvoda)
+            @Html.ValidationMessageFor(model => model.BojaProizvoda)
+        </td>
+    </tr>
+
+    <tr>
+        <td>@Html.LabelFor(model => model.Ostecen) </td>
+        <td>
+            @Html.RadioButtonFor(model => model.Ostecen, 'D') Da
+            @Html.RadioButtonFor(model => model.Ostecen, 'N') Ne
+            @Html.ValidationMessageFor(model => model.Ostecen)
+        </td>
+    </tr>
+
+    <tr>
+        <td>@Html.LabelFor(model => model.DatumProizvodnje) </td>
+        <td>
+            @Html.EditorFor(model => model.DatumProizvodnje)
+            @Html.ValidationMessageFor(model => model.DatumProizvodnje)
+        </td>
+    </tr>
+
+    <tr>
+        <td>@Html.LabelFor(model => model.KontrolniBroj) </td>
+        <td>
+            @Html.TextBoxFor(model => model.KontrolniBroj)
+            @Html.ValidationMessageFor(model => model.KontrolniBroj)
+        </td>
+    </tr>
+
+    <tr>
+        <td>@Html.LabelFor(model => model.GodinaModela) </td>
+        <td>
+            @Html.EnumDropDownListFor(model => model.GodinaModela)
+            @Html.ValidationMessageFor(model => model.GodinaModela)
+        </td>
+    </tr>
+
+    <tr>
+        <td>@Html.LabelFor(model => model.Dostupnost) </td>
+        <td>
+            @Html.CheckBoxFor(model => model.Dostupnost)
+            @Html.ValidationMessageFor(model => model.Dostupnost)
+        </td>
+    </tr>
+
+
+    </table>
+    @Html.ValidationSummary(false, "Spremanje nije uspjelo!")
+    <p><input type="submit" value="Spremi"></p>
+    @Html.ActionLink("Povratak bez spremanja", "PopisProizvoda", "Proizvodi")
+}
