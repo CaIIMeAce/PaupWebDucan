@@ -22,10 +22,10 @@ namespace PaupWebDucan.Models
                     SkladisniBroj = 10,
                     ImeProizvoda = "Stalak za jakne",
                     BojaProizvoda = "Crna",
-                    Ostecen = 'N',
+                    Ostecen = "N",
                     KontrolniBroj = "12345678911",
                     DatumProizvodnje = new DateTime(2022, 12, 03),
-                    GodinaModela = GodinaModela.DvijeTisuceDevetnaesta,
+                    GodinaModela = 2019,
                     Dostupnost = true,
                     DanaZaNabavu = 3
                 });
@@ -35,10 +35,10 @@ namespace PaupWebDucan.Models
                     SkladisniBroj = 2,
                     ImeProizvoda = "Šalica",
                     BojaProizvoda = "Plava",
-                    Ostecen = 'N',
+                    Ostecen = "N",
                     KontrolniBroj = "12345654321",
                     DatumProizvodnje = new DateTime(2021, 11, 04),
-                    GodinaModela = GodinaModela.DvijeTisuceSedamnaesta,
+                    GodinaModela = 2022,
                     Dostupnost = true,
                     DanaZaNabavu = 5
                 });
@@ -48,10 +48,10 @@ namespace PaupWebDucan.Models
                     SkladisniBroj = 3,
                     ImeProizvoda = "Svijecnjak",
                     BojaProizvoda = "Bijela",
-                    Ostecen = 'D',
+                    Ostecen = "D",
                     KontrolniBroj = "12345678765",
                     DatumProizvodnje = new DateTime(2020, 07, 21),
-                    GodinaModela = GodinaModela.DvijeTisucePetnaesta,
+                    GodinaModela = 2023,
                     Dostupnost = true,
                     DanaZaNabavu = 7
                 });
@@ -61,10 +61,10 @@ namespace PaupWebDucan.Models
                     SkladisniBroj = 4,
                     ImeProizvoda = "Termo boca",
                     BojaProizvoda = "Crvena",
-                    Ostecen = 'D',
+                    Ostecen = "D",
                     KontrolniBroj = "78956734521",
                     DatumProizvodnje = new DateTime(2023, 01, 01),
-                    GodinaModela = GodinaModela.DvijeTisuceDvadesetDruga,
+                    GodinaModela = 2021,
                     Dostupnost = false,
                     DanaZaNabavu = 1
                 });

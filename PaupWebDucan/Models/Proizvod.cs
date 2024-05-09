@@ -7,8 +7,10 @@ using System.Web;
 
 namespace PaupWebDucan.Models
 {
+    [Table("proizvod")]
     public class Proizvod
     {
+        [Key]
         [Display(Name ="Skladišni broj")]
         public int SkladisniBroj { get; set; }
 
@@ -26,7 +28,7 @@ namespace PaupWebDucan.Models
 
 
         [Display(Name ="Oštećen")]
-        public char Ostecen { get; set; }
+        public string Ostecen { get; set; }
 
 
         [Display(Name ="Kontrolni broj")]
@@ -43,7 +45,7 @@ namespace PaupWebDucan.Models
 
 
         [Display(Name = "Godina modela")]
-        public GodinaModela GodinaModela { get; set; }
+        public int GodinaModela { get; set; }
 
 
         [Display(Name = "Dostupnost")]

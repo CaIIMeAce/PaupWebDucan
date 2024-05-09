@@ -1,5 +1,5 @@
 ﻿@using PaupWebDucan.Models
-@model ProizvodiDB
+@model List<Proizvod>
 @{
     ViewBag.Title = "Popis proizvoda u prodaji";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -17,7 +17,7 @@
         <th>Detalji</th>
         <th>Ažuriranje</th>
     </tr>
-    @foreach (var proizvod in Model.VratiListu())
+    @foreach (var proizvod in Model)
     {
         <tr>
             <td>@proizvod.SkladisniBroj</td>

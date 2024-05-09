@@ -10,6 +10,7 @@ namespace PaupWebDucan.Controllers
 {
     public class ProizvodiController : Controller
     {
+        BazaDbContext bazaPodataka = new BazaDbContext();
         // GET: Proizvodi
         public ActionResult Index()
         {
@@ -20,8 +21,9 @@ namespace PaupWebDucan.Controllers
 
         public ActionResult PopisProizvoda()
         {
-            ProizvodiDB proizvodidb = new ProizvodiDB();
-            return View(proizvodidb);
+            var proizvodi = bazaPodataka.PopisProizvodaBaze.ToList();
+
+            return View(proizvodi);
         }
 
         public ActionResult Detalji(int? id)
@@ -31,9 +33,7 @@ namespace PaupWebDucan.Controllers
                 return RedirectToAction("PopisProizvoda");
             }
 
-            ProizvodiDB proizvodidb = new ProizvodiDB();
-
-            Proizvod proizvod = proizvodidb.VratiListu().FirstOrDefault(x => x.SkladisniBroj == id);
+            Proizvod proizvod = bazaPodataka.PopisProizvodaBaze.FirstOrDefault(x => x.SkladisniBroj == id);
 
             if (proizvod == null)
             {
@@ -48,9 +48,8 @@ namespace PaupWebDucan.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            ProizvodiDB proizvodidb = new ProizvodiDB();
 
-            Proizvod proizvod = proizvodidb.VratiListu().FirstOrDefault(x=>x.SkladisniBroj==id);
+            Proizvod proizvod = bazaPodataka.PopisProizvodaBaze.FirstOrDefault(x => x.SkladisniBroj == id);
 
             if (proizvod == null)
             {
@@ -71,8 +70,8 @@ namespace PaupWebDucan.Controllers
 
             if(ModelState.IsValid)
             {
-                ProizvodiDB proizvodidb = new ProizvodiDB();
-                proizvodidb.AzurirajProizvod(p);
+                bazaPodataka.Entry(p).State = System.Data.Entity.EntityState.Modified;
+                bazaPodataka.SaveChanges();
                 return RedirectToAction("PopisProizvoda");
             }
             return View(p);
