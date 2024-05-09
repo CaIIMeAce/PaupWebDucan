@@ -31,7 +31,7 @@ namespace PaupWebDucan.Models
 
         [Display(Name ="Kontrolni broj")]
         [Required(ErrorMessage = "{0} je obavezan")]
-        [StringLength(30, MinimumLength = 11, ErrorMessage = "{0} mora biti duljine {2} znakova")]
+        [StringLength(11, MinimumLength = 11, ErrorMessage = "{0} mora biti duljine {2} znakova")]
         public string KontrolniBroj{ get; set; }
 
 

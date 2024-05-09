@@ -139,7 +139,6 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\GodinaModela.cs" />
-    <Compile Include="Models\KontrolniBroj.cs" />
     <Compile Include="Models\Proizvod.cs" />
     <Compile Include="Models\ProizvodiDB.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
