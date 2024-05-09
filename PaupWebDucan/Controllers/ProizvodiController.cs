@@ -63,6 +63,12 @@ namespace PaupWebDucan.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Azuriraj(Proizvod p)
         {
+            if (!KontrolniBroj.JeValidanKontrolniBroj(p.KontrolniBroj))
+            {
+                ModelState.AddModelError("Kontrolni broj", "Neispravan kontrolni broj.");
+            }
+
+
             if(ModelState.IsValid)
             {
                 ProizvodiDB proizvodidb = new ProizvodiDB();
