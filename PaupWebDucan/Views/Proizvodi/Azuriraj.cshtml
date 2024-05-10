@@ -1,12 +1,19 @@
 ﻿@using PaupWebDucan.Models
 @model Proizvod
 @{
-    ViewBag.Title = "Ažuriranje: " + " " + Model.ImeProizvoda + " " + Model.SkladisniBroj;
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Ažuriranje podataka o proizvodu</h2>
-<h3>@Model.ImeProizvoda</h3>
+@if (ViewBag.NoviProizvod)
+{
+    <h2>Unos novog proizvoda</h2>
+}
+else
+{
+    <h2>Ažuriranje podataka o proizvodu</h2>
+    <h3>@Model.ImeProizvoda (@Model.SkladisniBroj)</h3>
+}
+
 
 @using (Html.BeginForm())
 {
@@ -14,14 +21,15 @@
     @Html.ValidationSummary(true, "Ispravite podatke!");
 
     <table>
-        <tr>
-            <td>@Html.LabelFor(model => model.SkladisniBroj) </td>
-            <td>
-                @Html.HiddenFor(model => model.SkladisniBroj)
-                @Html.DisplayFor(model => model.SkladisniBroj)
-            </td>
-        </tr>
-
+        @if (!ViewBag.NoviProizvod)
+        {
+            <tr>
+                <td>@Html.LabelFor(model => model.SkladisniBroj) </td>
+                <td>
+                    @Html.TextBoxFor(model => model.SkladisniBroj, new {diabled = true})
+                </td>
+            </tr>
+        }
     <tr>
         <td>@Html.LabelFor(model => model.ImeProizvoda) </td>
         <td>

@@ -5,7 +5,25 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+
 <h2>Popis proizvoda u prodaji</h2>
+@Html.ActionLink("Unos novog proizvoda", "Azuriraj")
+<br />
+<br />
+
+@using (Html.BeginForm("PopisProizvoda", "Proizvodi", FormMethod.Get))
+{
+    <p>
+        Naziv: @Html.TextBox("naziv")
+        Oštećen: @Html.RadioButton("ostecen", "D") Da @Html.RadioButton("ostecen", "N") Ne
+        <input type="submit" value="Traži" />
+    </p>
+}
+
+@if (Model == null || Model.Count == 0)
+{
+    <p>Nema rezultata pretraživanja.</p>
+}else { 
 
 <table border="1">
     <tr>
@@ -16,6 +34,7 @@
         <th>Oštećen</th>
         <th>Detalji</th>
         <th>Ažuriranje</th>
+        <th>Brisanje</th>
     </tr>
     @foreach (var proizvod in Model)
     {
@@ -24,10 +43,12 @@
             <td>@proizvod.ImeProizvoda</td>
             <td>@proizvod.BojaProizvoda</td>
             <td>@proizvod.KontrolniBroj</td>
-            <td>@Html.CheckBox("chbOstecen", proizvod.Ostecen)</td>
-            <td>@Html.ActionLink("Informacije", "Detalji", new { id = proizvod.SkladisniBroj})</td>
-            <td>@Html.ActionLink("Ažuriraj","Azuriraj", new { id=proizvod.SkladisniBroj})</td>
+            <td>@Html.CheckBox("chbOstecen", proizvod.Ostecen.Equals("D"))</td>
+            <td>@Html.ActionLink("Informacije", "Detalji", new { id = proizvod.SkladisniBroj })</td>
+            <td>@Html.ActionLink("Ažuriraj", "Azuriraj", new { id = proizvod.SkladisniBroj })</td>
+            <td>@Html.ActionLink("Izbriši", "Brisi", new { id = proizvod.SkladisniBroj })</td>
         </tr>
     }
 </table>
+}
 

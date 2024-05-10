@@ -37,6 +37,16 @@ namespace PaupWebDucan.Models
         public string KontrolniBroj{ get; set; }
 
 
+        public string ImeKontrolniBroj
+        {
+            get
+            {
+                return KontrolniBroj + " ---->" + ImeProizvoda;
+            }
+        }
+
+
+
         [Display(Name = "Datum proizvodnje")]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode =true)]
         [Required(ErrorMessage ="{0} je obavezan")]
