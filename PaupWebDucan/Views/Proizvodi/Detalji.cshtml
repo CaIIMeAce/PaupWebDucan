@@ -4,34 +4,10 @@
 @{
     ViewBag.Title = "Detalji";
     Layout = "~/Views/Shared/_Layout.cshtml";
-
-    string ostecen = "";
-    if (@Model.Ostecen == "D")
-    {
-        ostecen = "Da";
-    }
-    else
-    {
-        ostecen = "Ne";
-    }
+    string ostecen = Model.Ostecen == "D" ? "Da" : "Ne";
 }
 
-<h2>Detalji o proizvodu</h2>
-Ime proizvoda: @Model.ImeProizvoda
-<br />
-Boja proizvoda: @Model.BojaProizvoda
-<br />
-Oštećen: @Model.Ostecen
-<br />
-Godina modela: @Model.GodinaModela
-<br />
-Dostupnost: @(Model.Dostupnost ? "Dostupan" : "Nedostupan")
-<br />
-Kontrolni broj: @Model.KontrolniBroj
-<br />
-Datum proizvodnje: @Model.DatumProizvodnje.ToString("dd.MM.yyyy")
-<br />
-
+<!-- Poruka za nedostupnost proizvoda -->
 @if (!Model.Dostupnost)
 {
     <p style="color: red;">
@@ -42,3 +18,90 @@ Datum proizvodnje: @Model.DatumProizvodnje.ToString("dd.MM.yyyy")
     </p>
 }
 
+<h2>Detalji o proizvodu</h2>
+
+<div class="row">
+    <div class="col-md-2">
+        <strong>Skladišni broj: </strong>
+    </div>
+    <div class="col-md-10">
+        @Model.SkladisniBroj
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-2">
+        <strong>Ime proizvoda: </strong>
+    </div>
+    <div class="col-md-10">
+        @Model.ImeProizvoda
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-2">
+        <strong>Boja proizvoda</strong>
+    </div>
+    <div class="col-md-10">
+        @Model.BojaProizvoda
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-2">
+        <strong>Oštećen: </strong>
+    </div>
+    <div class="col-md-10">
+        @ostecen
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-2">
+        <strong>Kontrolni broj</strong>
+    </div>
+    <div class="col-md-10">
+        @Model.KontrolniBroj
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-2">
+        <strong>Datum proizvodnje: </strong>
+    </div>
+    <div class="col-md-10">
+        @Model.DatumProizvodnje.ToString("dd.MM.yyyy")
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-2">
+        <strong>Godina modela: </strong>
+    </div>
+    <div class="col-md-10">
+        @Model.GodinaModela
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-2">
+        <strong>Dostupnost: </strong>
+    </div>
+    <div class="col-md-10">
+        @(Model.Dostupnost ? "Dostupan" : "Nedostupan")
+    </div>
+</div>
+
+@if (!Model.Dostupnost)
+{
+    <div class="row">
+        <div class="col-md-2">
+            <strong>Dana za nabavu </strong>
+        </div>
+        <div class="col-md-10">
+            @Model.DanaZaNabavu
+        </div>
+    </div>
+}
+
+@Html.ActionLink("Povratak na popis svih proizvoda","PopisProizvoda","Proizvodi",null, new {@class = "btn btn-primary btn-sm"})

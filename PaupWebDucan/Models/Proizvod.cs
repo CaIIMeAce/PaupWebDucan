@@ -55,6 +55,7 @@ namespace PaupWebDucan.Models
 
 
         [Display(Name = "Godina modela")]
+        [Range(1980,2024,ErrorMessage ="Godina {0} mora biti između {1} i {2}")]
         public int GodinaModela { get; set; }
 
 

@@ -1,12 +1,28 @@
-﻿
-@{
-    //ViewBag.Title = "Početna stranica sa proizvodima";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+﻿@{ 
+    ViewBag.Title = "Početna stranica skladišta";
 }
 
-<h2>Skladiste PAUP</h2>
-<br />
-Skladiste: @ViewBag.Skladiste
-<br />
+<div class="jumbotron">
+    <h1>Web Skladište - Vrlec Mirko</h1>
+    <p class="lead">Baza proizvoda u skladištu</p>
+</div>
 
-Popis proizvoda: @Html.ActionLink("-=LINK=-","PopisProizvoda")
+<div class="row">
+    <div class="col-md-6">
+        <h2>Pretraživanje i pregled</h2>
+        <p>Pretraživanje proizvoda po imenu i oštećenosti, upravljanje proizvodima</p>
+        <p>@Html.ActionLink("Pregled proizvoda", "PopisProizvoda", "Proizvodi", null, new { @class = "btn btn-default" })</p>
+
+    </div>
+
+
+    <div class="col-md-6">
+        <h2>Unos novog proizvoda</h2>
+        <p>Unos podataka o novom proizvodu u glavnu podatkovnu bazu</p>
+        <p>@Html.ActionLink("Unos proizvoda", "Azuriraj", "Proizvodi", null, new { @class = "btn btn-deafault" })</p>
+    </div>
+</div>
+
+
+
+

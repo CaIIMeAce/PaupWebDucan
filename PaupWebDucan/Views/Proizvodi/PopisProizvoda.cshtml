@@ -7,23 +7,38 @@
 
 
 <h2>Popis proizvoda u prodaji</h2>
-@Html.ActionLink("Unos novog proizvoda", "Azuriraj")
+
+
+<a href="@Url.Action("Azuriraj","Proizvodi")" class="btn btn-success"
+   <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Upisivanje novog proizvoda
+</a>
 <br />
 <br />
 
 @using (Html.BeginForm("PopisProizvoda", "Proizvodi", FormMethod.Get))
 {
-    <p>
-        Naziv: @Html.TextBox("naziv")
-        Oštećen: @Html.RadioButton("ostecen", "D") Da @Html.RadioButton("ostecen", "N") Ne @Html.RadioButton("ostecen", "") Micanje filtra
-        <input type="submit" value="Traži" />
-    </p>
+    @Html.TextBox("naziv", "", new {@class = "form-control", placeholder ="Naziv proidvoda"})
+<div class="form-group">
+    <label class="radio-inline">
+        Oštećen: @Html.RadioButton("ostecen", "D") Da
+    </label>
+    <label class="radio-inline">
+        @Html.RadioButton("ostecen", "N") Ne
+    </label>
+    <label class="radio-inline">
+        @Html.RadioButton("ostecen", "") Micanje filtra
+    </label>
+</div>
+
+    <button type="submit" class="btn btn-primary">
+        <span class="glyphicon glyphicon-search" aria-hidden="true"></span> Pretraživanje
+    </button>
 }
 
 @if (Model == null || Model.Count == 0)
 {
     <p>Nema rezultata pretraživanja.</p>
-}else { 
+}else {
 
 <table border="1">
     <tr>
@@ -32,7 +47,7 @@
         <th>Boja proizvoda</th>
         <th>Kontrolni broj</th>
         <th>Oštećen</th>
-        <th>Detalji</th>
+        <th>Informacije</th>
         <th>Ažuriranje</th>
         <th>Brisanje</th>
     </tr>
@@ -44,9 +59,10 @@
             <td>@proizvod.BojaProizvoda</td>
             <td>@proizvod.KontrolniBroj</td>
             <td>@Html.CheckBox("chbOstecen", proizvod.Ostecen.Equals("D"))</td>
-            <td>@Html.ActionLink("Informacije", "Detalji", new { id = proizvod.SkladisniBroj })</td>
-            <td>@Html.ActionLink("Ažuriraj", "Azuriraj", new { id = proizvod.SkladisniBroj })</td>
-            <td>@Html.ActionLink("Izbriši", "Brisi", new { id = proizvod.SkladisniBroj })</td>
+            <td>@Html.ActionLink("Informacije", "Detalji", new { id = proizvod.SkladisniBroj }, new { @class = "btn btn-info btn-sm" })</td>
+            <td>@Html.ActionLink("Ažuriraj", "Azuriraj", new { id = proizvod.SkladisniBroj }, new { @class = "btn btn-warning btn-sm" })</td>
+            <td>@Html.ActionLink("Izbriši", "Brisi", new { id = proizvod.SkladisniBroj }, new { @class = "btn btn-danger btn-sm" })</td>
+
         </tr>
     }
 </table>

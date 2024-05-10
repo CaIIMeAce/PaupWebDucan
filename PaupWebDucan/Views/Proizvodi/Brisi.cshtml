@@ -7,13 +7,15 @@
 
 <h2>@ViewBag.Title</h2>
 
-Jeste li sigurni da želite izbrisati proizvod @Model.ImeKontrolniBroj (Skladisni broj: @Model.SkladisniBroj) ?
+<strong>Jeste li sigurni da želite izbrisati proizvod @Model.ImeKontrolniBroj (Skladisni broj: @Model.SkladisniBroj) ? </strong>
 
 @using (Html.BeginForm("Brisi", "Proizvodi"))
 {
     @Html.AntiForgeryToken();
 
-    <input type="submit" title="Izbriši proizvod" />
+    <button type="submit" class="btn btn-danger">
+        <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Izbriši proizvod
+    </button>
 
     <br/>
     <br/>
