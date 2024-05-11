@@ -169,13 +169,20 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\KategorijeController.cs" />
+    <Compile Include="Controllers\KorisniciController.cs" />
     <Compile Include="Controllers\ProizvodiController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Misc\LogiraniKorisnik.cs" />
+    <Compile Include="Misc\LogiraniKorisnikSerializeModel.cs" />
+    <Compile Include="Misc\PasswordHelper.cs" />
     <Compile Include="Models\BazaDbContext.cs" />
     <Compile Include="Models\Kategorije.cs" />
     <Compile Include="Models\KontrolniBroj.cs" />
+    <Compile Include="Models\Korisnik.cs" />
+    <Compile Include="Models\KorisnikPrijava.cs" />
+    <Compile Include="Models\Ovlast.cs" />
     <Compile Include="Models\Proizvod.cs" />
     <Compile Include="Models\ProizvodiDB.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -242,6 +249,8 @@
     <Content Include="Views\Kategorije\Details.cshtml" />
     <Content Include="Views\Kategorije\Edit.cshtml" />
     <Content Include="Views\Kategorije\Index.cshtml" />
+    <Content Include="Views\Korisnici\Index.cshtml" />
+    <Content Include="Views\Korisnici\Prijava.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

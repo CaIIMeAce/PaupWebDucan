@@ -12,8 +12,11 @@ namespace PaupWebDucan.Models
     {
         public DbSet<Proizvod> PopisProizvodaBaze { get; set; }
 
-        
-
         public DbSet<Kategorije> PopisKategorija { get; set;}
+
+
+        public DbSet<Korisnik> PopisKorisnika { get; set;}
+
+        public DbSet<Ovlast> PopisOvlasti { get; set; }
     }
 }
