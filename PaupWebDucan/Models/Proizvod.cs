@@ -64,5 +64,12 @@ namespace PaupWebDucan.Models
 
         [Display(Name = "Dana za nabavu")]
         public int DanaZaNabavu { get; set; }
+
+        [Display(Name = "Kategorija")]
+        [Column("KategorijeSifra")]
+        [ForeignKey("KategorijaProizvoda")]
+        public string KategorijeSifra { get; set; }
+
+        public virtual Kategorije KategorijaProizvoda { get; set; }
     }
 }

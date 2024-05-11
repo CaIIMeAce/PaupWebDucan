@@ -1,0 +1,44 @@
+﻿@model PaupWebDucan.Models.Kategorije
+
+@{
+    ViewBag.Title = "Brisanje kategorije";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Brisanje kategorije</h2>
+
+<h3>Jeste li sigurni da želite izbrisati kategoriju?</h3>
+<div>
+    <h4>Kategorije</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.NazivKategorije)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NazivKategorije)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ZastarjeliModel)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ZastarjeliModel)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <button type="submit" class="btn btn-danger">
+                <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Izbriši
+            </button>
+            <br />
+            @Html.ActionLink("Povratak na popis kategorija", "Index")
+        </div>
+    }
+</div>

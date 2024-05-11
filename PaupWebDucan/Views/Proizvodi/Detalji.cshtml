@@ -102,6 +102,18 @@
             @Model.DanaZaNabavu
         </div>
     </div>
+
+    <div class="row">
+        <div class="col-md-2">
+            <strong>Kategorija: </strong>
+        </div>
+        <div class="col-md-10">
+            @if (Model.KategorijaProizvoda!= null)
+            {
+                @Model.KategorijaProizvoda.NazivKategorije
+            }
+        </div>
+    </div>
 }
 
 @Html.ActionLink("Povratak na popis svih proizvoda","PopisProizvoda","Proizvodi",null, new {@class = "btn btn-primary btn-sm"})

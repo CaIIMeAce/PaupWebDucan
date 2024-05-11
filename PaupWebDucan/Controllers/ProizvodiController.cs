@@ -20,9 +20,12 @@ namespace PaupWebDucan.Controllers
         }
 
         //Popis
-        public ActionResult PopisProizvoda(string naziv, string ostecen)
+        public ActionResult PopisProizvoda(string naziv, string ostecen, string kategorija)
         {
             var proizvodi = bazaPodataka.PopisProizvodaBaze.ToList();
+
+            var kategorijeList = bazaPodataka.PopisKategorija.OrderBy(x => x.NazivKategorije).ToList();
+            ViewBag.NazivKategorije = kategorijeList;
 
             if (!string.IsNullOrWhiteSpace(naziv))
             {
@@ -31,6 +34,10 @@ namespace PaupWebDucan.Controllers
             if (!string.IsNullOrWhiteSpace(ostecen))
             {
                 proizvodi = proizvodi.Where(x => x.Ostecen == ostecen).ToList();
+            }
+            if (!string.IsNullOrWhiteSpace(kategorija))
+            {
+                proizvodi = proizvodi.Where(x=>x.KategorijeSifra == kategorija).ToList();
             }
 
             if (proizvodi.Count == 0)
@@ -85,6 +92,11 @@ namespace PaupWebDucan.Controllers
                 ViewBag.Title = "Ažuriranje podataka o proizvodu";
                 ViewBag.NoviProizvod = false;
             }
+
+            var proizvodi = bazaPodataka.PopisKategorija.OrderBy(x => x.NazivKategorije).ToList();
+            proizvodi.Insert(0, new Kategorije { MaterijalIzrade = "",NazivKategorije="Nedefinirano" });
+            ViewBag.Kategorije = proizvodi;
+
             return View(proizvod);
 
 
@@ -128,6 +140,12 @@ namespace PaupWebDucan.Controllers
                 ViewBag.Title = "Ažuriranje podataka o proizvodu";
                 ViewBag.NoviProizvod = false;
             }
+
+            var proizvodi = bazaPodataka.PopisKategorija.OrderBy(x => x.NazivKategorije).ToList();
+            proizvodi.Insert(0, new Kategorije { MaterijalIzrade = "", NazivKategorije = "Nedefinirano" });
+            ViewBag.Kategorije = proizvodi;
+
+
             return View(p);
         }
 

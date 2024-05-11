@@ -1,0 +1,42 @@
+﻿@model IEnumerable<PaupWebDucan.Models.Kategorije>
+
+@{
+    ViewBag.Title = "Popis kategorije proizvoda";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Popis kategorije proizvoda</h2>
+
+<p>
+    <a href="@Url.Action("Create","Kategorije")" class="btn btn-success">
+        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Kreiranje nove kategorije
+    </a>
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.NazivKategorije)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ZastarjeliModel)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.NazivKategorije)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ZastarjeliModel)
+        </td>
+        <td>
+            @Html.ActionLink("Detalji o kategoriji", "Details", new { id=item.MaterijalIzrade }, new {@class="btn btn-warning btn-sm"})
+            @Html.ActionLink("Ažuriranje podataka", "Edit", new { id=item.MaterijalIzrade }, new { @class = "btn btn-info btn-sm" })
+            @Html.ActionLink("Izbriši kategoriju", "Delete", new { id=item.MaterijalIzrade }, new { @class = "btn btn-danger btn-sm" })
+        </td>
+    </tr>
+}
+
+</table>

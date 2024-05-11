@@ -1,0 +1,42 @@
+﻿@model PaupWebDucan.Models.Kategorije
+
+@{
+    ViewBag.Title = "Detalji kategorije";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Detalji kategorije</h2>
+
+<div>
+    <h4>Kategorija</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.MaterijalIzrade)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.MaterijalIzrade)
+        </dd>
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NazivKategorije)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.NazivKategorije)
+        </dd>
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ZastarjeliModel)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ZastarjeliModel)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Ažuriranje kategorije", "Edit", new { id = Model.MaterijalIzrade }) |
+    @Html.ActionLink("Povratak na popis kategorija", "Index")
+</p>

@@ -11,5 +11,9 @@ namespace PaupWebDucan.Models
     public class BazaDbContext : DbContext
     {
         public DbSet<Proizvod> PopisProizvodaBaze { get; set; }
+
+        
+
+        public DbSet<Kategorije> PopisKategorija { get; set;}
     }
 }
