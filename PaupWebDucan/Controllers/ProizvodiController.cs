@@ -1,6 +1,7 @@
 ﻿using PaupWebDucan.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -8,10 +9,12 @@ using System.Web.Mvc;
 
 namespace PaupWebDucan.Controllers
 {
+    [Authorize]
     public class ProizvodiController : Controller
     {
         BazaDbContext bazaPodataka = new BazaDbContext();
         // GET: Proizvodi
+        [AllowAnonymous]
         public ActionResult Index()
         {
             ViewBag.Title = "Početna stranica sa proizvodima";
@@ -20,6 +23,7 @@ namespace PaupWebDucan.Controllers
         }
 
         //Popis
+        [AllowAnonymous]
         public ActionResult PopisProizvoda(string naziv, string ostecen, string kategorija)
         {
             var proizvodi = bazaPodataka.PopisProizvodaBaze.ToList();
@@ -113,6 +117,24 @@ namespace PaupWebDucan.Controllers
             }
             //Kraj validacije
 
+            if (p.ImageFile !=null)
+            {
+                string fileName = Path.GetFileNameWithoutExtension(p.ImageFile.FileName);
+                string extension = Path.GetExtension(p.ImageFile.FileName);
+
+                if (extension == ".jpg" || extension == ".jpeg" || extension == ".png")
+                {
+                    fileName = fileName + DateTime.Now.ToString("yymmssfff") + extension;
+                    p.SlikaPutanja = "~/Images/" + fileName;
+                    fileName = Path.Combine(Server.MapPath("~/Images/"),fileName);
+                    p.ImageFile.SaveAs(fileName);
+                }
+                else
+                {
+                    ModelState.AddModelError("SlikaPutanja", "Nepodržana ekstenzija");
+                }
+            }
+
 
 
             if (ModelState.IsValid)
@@ -125,7 +147,7 @@ namespace PaupWebDucan.Controllers
                 {
                     bazaPodataka.PopisProizvodaBaze.Add(p);
                 }
-                bazaPodataka.SaveChanges();
+                    bazaPodataka.SaveChanges();
 
                 return RedirectToAction("PopisProizvoda");
             }

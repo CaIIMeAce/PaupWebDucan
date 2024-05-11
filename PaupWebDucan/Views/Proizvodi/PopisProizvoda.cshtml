@@ -1,4 +1,5 @@
-﻿@using PaupWebDucan.Models
+﻿@using PaupWebDucan.Misc
+@using PaupWebDucan.Models
 @model List<Proizvod>
 @{
     ViewBag.Title = "Popis proizvoda u prodaji";
@@ -8,68 +9,72 @@
 
 <h2>Popis proizvoda u prodaji</h2>
 
-
-<a href="@Url.Action("Azuriraj","Proizvodi")" class="btn btn-success"
-   <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Upisivanje novog proizvoda
-</a>
-<br />
-<br />
-
-@using (Html.BeginForm("PopisProizvoda", "Proizvodi", FormMethod.Get))
+@if (User.Identity.IsAuthenticated && ((User as LogiraniKorisnik).IsInRole(OvlastiKorisnik.Administator) || (User as LogiraniKorisnik).IsInRole(OvlastiKorisnik.Moderator)))
 {
-<div style="display: flex; align-items: center;">
-    @Html.TextBox("naziv", "", new { @class = "form-control", placeholder = "Naziv proizvoda", style = "margin-right: 10px;" })
-    @Html.DropDownList("kategorija", new SelectList(ViewBag.NazivKategorije, "MaterijalIzrade", "MaterijalIzrade", ""), "Svi materijali", new { @class = "form-control", style = "margin-right: 10px;" })
-    <button type="submit" class="btn btn-primary">Pretraži</button>
-</div>
 
-    <div class="form-group" style="margin-left:10px;">
-        <label class="radio-inline">
-            Oštećen: @Html.RadioButton("ostecen", "D") Da
-        </label>
-        <label class="radio-inline">
-            @Html.RadioButton("ostecen", "N") Ne
-        </label>
-        <label class="radio-inline">
-            @Html.RadioButton("ostecen", "") Micanje filtra
-        </label>
-    </div>
+    <a href="@Url.Action("Azuriraj", "Proizvodi")" class="btn btn-success">
+        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> <p>Upisivanje novog proizvoda</p>
+    </a>
 }
+    <br />
+    <br />
 
-@if (Model == null || Model.Count == 0)
-{
-    <p>Nema rezultata pretraživanja.</p>
-}
-else
-{
+    @using (Html.BeginForm("PopisProizvoda", "Proizvodi", FormMethod.Get))
+    {
+        <div style="display: flex; align-items: center;">
+            @Html.TextBox("naziv", "", new { @class = "form-control", placeholder = "Naziv proizvoda", style = "margin-right: 10px;" })
+            @Html.DropDownList("kategorija", new SelectList(ViewBag.NazivKategorije, "MaterijalIzrade", "MaterijalIzrade", ""), "Svi materijali", new { @class = "form-control", style = "margin-right: 10px;" })
+            <button type="submit" class="btn btn-primary">Pretraži</button>
+        </div>
 
-    <table border="1">
-        <tr>
-            <th>Skladisni broj</th>
-            <th>Ime proizvoda</th>
-            <th>Boja proizvoda</th>
-            <th>Kontrolni broj</th>
-            <th>Materijal</th>
-            <th>Oštećen</th>
-            <th>Informacije</th>
-            <th>Ažuriranje</th>
-            <th>Brisanje</th>
-        </tr>
-        @foreach (var proizvod in Model)
-        {
+        <div class="form-group" style="margin-left:10px;">
+            <label class="radio-inline">
+                Oštećen: @Html.RadioButton("ostecen", "D") Da
+            </label>
+            <label class="radio-inline">
+                @Html.RadioButton("ostecen", "N") Ne
+            </label>
+            <label class="radio-inline">
+                @Html.RadioButton("ostecen", "") Micanje filtra
+            </label>
+        </div>
+    }
+
+    @if (Model == null || Model.Count == 0)
+    {
+        <p>Nema rezultata pretraživanja.</p>
+    }
+    else
+    {
+
+        <table border="1">
             <tr>
-                <td>@proizvod.SkladisniBroj</td>
-                <td>@proizvod.ImeProizvoda</td>
-                <td>@proizvod.BojaProizvoda</td>
-                <td>@proizvod.KontrolniBroj</td>
-                <td>@(proizvod.KategorijaProizvoda?.MaterijalIzrade)</td>
-                <td>@Html.CheckBox("chbOstecen", proizvod.Ostecen.Equals("D"))</td>
-                <td>@Html.ActionLink("Informacije", "Detalji", new { id = proizvod.SkladisniBroj }, new { @class = "btn btn-info btn-sm" })</td>
-                <td>@Html.ActionLink("Ažuriraj", "Azuriraj", new { id = proizvod.SkladisniBroj }, new { @class = "btn btn-warning btn-sm" })</td>
-                <td>@Html.ActionLink("Izbriši", "Brisi", new { id = proizvod.SkladisniBroj }, new { @class = "btn btn-danger btn-sm" })</td>
-
+                <th>Skladisni broj</th>
+                <th>Ime proizvoda</th>
+                <th>Boja proizvoda</th>
+                <th>Kontrolni broj</th>
+                <th>Materijal</th>
+                <th>Oštećen</th>
+                <th>Informacije</th>
+                <th>Ažuriranje</th>
+                <th>Brisanje</th>
+                <th>Slika</th>
             </tr>
-        }
-    </table>
-}
+            @foreach (var proizvod in Model)
+            {
+                <tr>
+                    <td>@proizvod.SkladisniBroj</td>
+                    <td>@proizvod.ImeProizvoda</td>
+                    <td>@proizvod.BojaProizvoda</td>
+                    <td>@proizvod.KontrolniBroj</td>
+                    <td>@(proizvod.KategorijaProizvoda?.MaterijalIzrade)</td>
+                    <td>@Html.CheckBox("chbOstecen", proizvod.Ostecen.Equals("D"))</td>
+                    <td>@Html.ActionLink("Informacije", "Detalji", new { id = proizvod.SkladisniBroj }, new { @class = "btn btn-info btn-sm" })</td>
+                    <td>@Html.ActionLink("Ažuriraj", "Azuriraj", new { id = proizvod.SkladisniBroj }, new { @class = "btn btn-warning btn-sm" })</td>
+                    <td>@Html.ActionLink("Izbriši", "Brisi", new { id = proizvod.SkladisniBroj }, new { @class = "btn btn-danger btn-sm" })</td>
+                    <td>@proizvod.ImageFile</td>
+                </tr>
+            }
+        </table>
+    }
 

@@ -18,7 +18,7 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
+                <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
                         @Html.ActionLink("Početna", "Index", "Home", new { area = "" }, new { @class = "nav-link" })
                     </li>
@@ -28,21 +28,30 @@
                     <li class="nav-item">
                         @Html.ActionLink("Kategorije proizvoda", "Index", "Kategorije", new { area = "" }, new { @class = "nav-link" })
                     </li>
-                    <li class="nav-item">
-                        @Html.ActionLink("Korisnici", "Index", "Korisnici", new { area = "" }, new { @class = "nav-link" })
-                    </li>
+                    @if (User.Identity.IsAuthenticated && (User as LogiraniKorisnik).IsInRole(OvlastiKorisnik.Administator))
+                    {
+                        <li class="nav-item">
+                            @Html.ActionLink("Korisnici", "Index", "Korisnici", new { area = "" }, new { @class = "nav-link" })
+                        </li>
+                    }
                 </ul>
                 @if (User.Identity.IsAuthenticated)
                 {
-                    <ul class="nav navbar-nav navbar-right">
-                        <li>@Html.ActionLink(((User as LogiraniKorisnik).PrezimeIme), "Index", "Home")</li>
-                        <li>@Html.ActionLink("Odjava", "Odjava", "Korisnici")</li>
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            @Html.ActionLink(((User as LogiraniKorisnik).PrezimeIme), "Index", "Home", new { area = "" }, new { @class = "nav-link" })
+                        </li>
+                        <li class="nav-item">
+                            @Html.ActionLink("Odjava", "Odjava", "Korisnici", new { area = "" }, new { @class = "nav-link" })
+                        </li>
                     </ul>
                 }
                 else
                 {
-                    <ul class="nav navbar-nav navbar-right">
-                        <li>@Html.ActionLink("Prijava", "Prijava", "Korisnici")</li>
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            @Html.ActionLink("Prijava", "Prijava", "Korisnici", new { area = "" }, new { @class = "nav-link" })
+                        </li>
                     </ul>
                 }
             </div>

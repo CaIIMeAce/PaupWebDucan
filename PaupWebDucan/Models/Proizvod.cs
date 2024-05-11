@@ -71,5 +71,13 @@ namespace PaupWebDucan.Models
         public string KategorijeSifra { get; set; }
 
         public virtual Kategorije KategorijaProizvoda { get; set; }
+
+
+        [Display(Name ="Fotografija")]
+        [Column("slika")]
+        public string SlikaPutanja {  get; set; }
+
+        [NotMapped]
+        public HttpPostedFileBase ImageFile { get; set; }
     }
 }

@@ -6,15 +6,18 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using PaupWebDucan.Misc;
 using PaupWebDucan.Models;
 
 namespace PaupWebDucan.Controllers
 {
+    [Authorize(Roles =OvlastiKorisnik.Administator + "," + OvlastiKorisnik.Moderator)]
     public class KategorijeController : Controller
     {
         private BazaDbContext db = new BazaDbContext();
 
         // GET: Kategorije
+        [AllowAnonymous]
         public ActionResult Index()
         {
             return View(db.PopisKategorija.ToList());

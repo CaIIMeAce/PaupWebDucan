@@ -1,4 +1,5 @@
-﻿@model IEnumerable<PaupWebDucan.Models.Kategorije>
+﻿@using PaupWebDucan.Misc
+@model IEnumerable<PaupWebDucan.Models.Kategorije>
 
 @{
     ViewBag.Title = "Popis kategorije proizvoda";
@@ -7,11 +8,16 @@
 
 <h2>Popis kategorije proizvoda</h2>
 
+
+@if (User.Identity.IsAuthenticated && ((User as LogiraniKorisnik).IsInRole(OvlastiKorisnik.Administator) || (User as LogiraniKorisnik).IsInRole(OvlastiKorisnik.Moderator)))
+{
 <p>
     <a href="@Url.Action("Create","Kategorije")" class="btn btn-success">
         <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Kreiranje nove kategorije
     </a>
 </p>
+}
+
 <table class="table">
     <tr>
         <th>
@@ -20,7 +26,10 @@
         <th>
             @Html.DisplayNameFor(model => model.ZastarjeliModel)
         </th>
-        <th></th>
+        @if (User.Identity.IsAuthenticated && ((User as LogiraniKorisnik).IsInRole(OvlastiKorisnik.Administator) || (User as LogiraniKorisnik).IsInRole(OvlastiKorisnik.Moderator)))
+        {
+            <th></th>
+        }
     </tr>
 
 @foreach (var item in Model) {
@@ -31,12 +40,14 @@
         <td>
             @Html.DisplayFor(modelItem => item.ZastarjeliModel)
         </td>
-        <td>
-            @Html.ActionLink("Detalji o kategoriji", "Details", new { id=item.MaterijalIzrade }, new {@class="btn btn-warning btn-sm"})
-            @Html.ActionLink("Ažuriranje podataka", "Edit", new { id=item.MaterijalIzrade }, new { @class = "btn btn-info btn-sm" })
-            @Html.ActionLink("Izbriši kategoriju", "Delete", new { id=item.MaterijalIzrade }, new { @class = "btn btn-danger btn-sm" })
-        </td>
+        @if (User.Identity.IsAuthenticated && ((User as LogiraniKorisnik).IsInRole(OvlastiKorisnik.Administator) || (User as LogiraniKorisnik).IsInRole(OvlastiKorisnik.Moderator)))
+        { 
+            <td>
+                @Html.ActionLink("Detalji o kategoriji", "Details", new { id = item.MaterijalIzrade }, new { @class = "btn btn-warning btn-sm" })
+                @Html.ActionLink("Ažuriranje podataka", "Edit", new { id = item.MaterijalIzrade }, new { @class = "btn btn-info btn-sm" })
+                @Html.ActionLink("Izbriši kategoriju", "Delete", new { id = item.MaterijalIzrade }, new { @class = "btn btn-danger btn-sm" })
+            </td>
+        }
     </tr>
 }
-
 </table>

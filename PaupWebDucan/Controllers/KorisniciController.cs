@@ -11,6 +11,7 @@ using System.Web.Security;
 
 namespace PaupWebDucan.Controllers
 {
+    [Authorize(Roles =OvlastiKorisnik.Administator)]
     public class KorisniciController : Controller
     {
         BazaDbContext bazaPodataka = new BazaDbContext();
@@ -24,7 +25,6 @@ namespace PaupWebDucan.Controllers
 
         [HttpGet]
         [AllowAnonymous]
-
         public ActionResult Prijava(string returnUrl)
         {
             KorisnikPrijava model = new KorisnikPrijava();
@@ -79,6 +79,10 @@ namespace PaupWebDucan.Controllers
             ModelState.AddModelError("", "Neispravno korisniško ime ili lozinka");
             return View(model);
         }
+
+
+        [OverrideAuthentication]
+        [Authorize]
         public ActionResult Odjava()
         {
             FormsAuthentication.SignOut();
