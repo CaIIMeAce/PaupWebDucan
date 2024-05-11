@@ -1,4 +1,5 @@
 ﻿using PaupWebDucan.Models;
+using PaupWebDucan.Reports;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -52,6 +53,7 @@ namespace PaupWebDucan.Controllers
             {
                 ViewBag.Poruka = string.Empty;
             }
+
             return View(proizvodi);
         }
 
@@ -205,6 +207,38 @@ namespace PaupWebDucan.Controllers
             bazaPodataka.SaveChanges();
 
             return View("BrisiStatus");
+        }
+
+        public ActionResult IspisPDF(string naziv, string ostecen, string kategorija)
+        {
+            var proizvodi = bazaPodataka.PopisProizvodaBaze.ToList();
+
+            if (!string.IsNullOrWhiteSpace(naziv))
+            {
+                proizvodi = proizvodi.Where(x => x.ImeKontrolniBroj.ToUpper().Contains(naziv.ToUpper())).ToList();
+            }
+            if (!string.IsNullOrWhiteSpace(ostecen))
+            {
+                proizvodi = proizvodi.Where(x => x.Ostecen == ostecen).ToList();
+            }
+            if (!string.IsNullOrWhiteSpace(kategorija))
+            {
+                proizvodi = proizvodi.Where(x => x.KategorijeSifra == kategorija).ToList();
+            }
+
+            if (proizvodi.Count == 0)
+            {
+                ViewBag.Poruka = "Nema rezultata pretraživanja.";
+            }
+            else
+            {
+                ViewBag.Poruka = string.Empty;
+            }
+
+            ProizvodiReport proizvodiReport = new ProizvodiReport();
+            proizvodiReport.ListaProizvoda(proizvodi);
+
+            return File(proizvodiReport.Podaci, System.Net.Mime.MediaTypeNames.Application.Pdf, "PopisProizvoda.pdf");
         }
     }
 }
