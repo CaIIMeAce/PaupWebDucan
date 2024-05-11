@@ -1,0 +1,132 @@
+-- DROP TABLE proizvod;
+CREATE TABLE IF NOT EXISTS proizvod (
+    SkladisniBroj INT AUTO_INCREMENT PRIMARY KEY,
+    ImeProizvoda VARCHAR(30) NOT NULL,
+    BojaProizvoda VARCHAR(30) NOT NULL,
+    Ostecen CHAR(1),
+    KontrolniBroj VARCHAR(30) DEFAULT NULL,
+    DatumProizvodnje DATE DEFAULT NULL,
+    GodinaModela INT NOT NULL,
+    Dostupnost BIT(1) DEFAULT 0,
+    DanaZaNabavu INT
+);
+
+-- DELETE FROM proizvod;
+
+INSERT INTO proizvod (ImeProizvoda, BojaProizvoda, Ostecen, KontrolniBroj, DatumProizvodnje, GodinaModela, Dostupnost, DanaZaNabavu, KategorijeSifra) 
+VALUES 
+('Stolica', 'Žuta', 'N', '12345678921', '2023-11-25', 2022, 1, 30, 'Plastika'),
+('Stol', 'Crvena', 'N', '98765432122', '2022-06-10', 2021, 1, 1, 'Metal'),
+('Lampa', 'Bijela', 'D', '12345678923', '2020-03-15', 2019, 0, 15, 'Staklo'),
+('Stolnjak', 'Zelena', 'N', '98765432124', '2023-09-20', 2020, 1, 45, 'Tkanina'),
+('Klupa', 'Plava', 'N', '12345678925', '2024-02-15', 2023, 1, 60, 'Drvo'),
+('Vaza', 'Crna', 'N', '98765432126', '2021-12-01', 2021, 1, 1, 'Kamen'),
+('Sofa', 'Smeđa', 'D', '12345678927', '2023-05-05', 2019, 0, 90, 'Bambus'),
+('Stolica', 'Plava', 'N', '98765432128', '2022-08-20', 2020, 1, 75, 'Plastika'),
+('Ormarić', 'Crna', 'N', '12345678929', '2023-01-30', 2018, 1, 1, 'Metal'),
+('Stol', 'Bijela', 'D', '98765432130', '2024-01-01', 2022, 1, 120, 'Drvo'),
+('Stalak', 'Crvena', 'N', '12345678931', '2021-07-08', 2020, 1, 30, 'Plastika'),
+('Vaza', 'Smeđa', 'N', '98765432132', '2022-10-18', 2017, 1, 1, 'Metal'),
+('Fotelja', 'Žuta', 'D', '12345678933', '2023-11-12', 2019, 0, 1, 'Drvo'),
+('Krevet', 'Plava', 'N', '98765432134', '2024-04-01', 2021, 1, 45, 'Plastika'),
+('Stolica', 'Crna', 'N', '12345678935', '2024-02-10', 2023, 1, 90, 'Metal'),
+('Stol', 'Smeđa', 'D', '98765432136', '2021-05-30', 2020, 1, 30, 'Drvo'),
+('Stolica', 'Zelena', 'N', '12345678937', '2023-10-10', 2018, 1, 60, 'Plastika'),
+('Sofa', 'Plava', 'N', '98765432138', '2024-01-01', 2021, 1, 75, 'Metal'),
+('Vaza', 'Crvena', 'D', '12345678939', '2024-04-15', 2017, 1, 1, 'Plastika'),
+('Ormarić', 'Žuta', 'N', '98765432140', '2022-03-22', 2020, 1, 45, 'Metal'),
+('Stolica', 'Bijela', 'N', '12345678941', '2023-12-20', 2022, 1, 90, 'Drvo'),
+('Stol', 'Crna', 'D', '98765432142', '2021-08-30', 2020, 1, 30, 'Plastika'),
+('Lampa', 'Crvena', 'N', '12345678943', '2020-06-18', 2019, 1, 60, 'Metal'),
+('Stolnjak', 'Smeđa', 'N', '98765432144', '2023-03-01', 2020, 1, 45, 'Drvo'),
+('Klupa', 'Bijela', 'D', '12345678945', '2024-01-01', 2023, 1, 120, 'Plastika'),
+('Vaza', 'Zelena', 'N', '98765432146', '2021-10-05', 2017, 1, 30, 'Metal'),
+('Sofa', 'Crna', 'N', '12345678947', '2024-02-25', 2020, 1, 60, 'Plastika'),
+('Stolica', 'Plava', 'D', '98765432148', '2023-07-15', 2018, 1, 90, 'Drvo'),
+('Stol', 'Žuta', 'N', '12345678949', '2024-01-01', 2022, 1, 1, 'Plastika'),
+('Stalak', 'Smeđa', 'N', '98765432150', '2022-04-08', 2020, 1, 45, 'Metal'),
+('Vaza', 'Crvena', 'N', '12345678951', '2023-12-01', 2019, 1, 75, 'Drvo'),
+('Fotelja', 'Crna', 'D', '98765432152', '2024-01-01', 2021, 1, 1, 'Plastika'),
+('Krevet', 'Bijela', 'N', '12345678953', '2021-09-10', 2020, 1, 60, 'Metal'),
+('Stolica', 'Zelena', 'N', '98765432154', '2022-08-20', 2018, 1, 30, 'Drvo'),
+('Stol', 'Plava', 'D', '12345678955', '2023-07-30', 2021, 1, 1, 'Plastika'),
+('Stolica', 'Žuta', 'N', '98765432156', '2024-01-01', 2022, 1, 90, 'Metal'),
+('Stol', 'Crna', 'N', '12345678957', '2023-08-05', 2019, 1, 75, 'Drvo'),
+('Klupa', 'Žuta', 'D', '98765432158', '2024-01-01', 2021, 1, 1, 'Plastika'),
+('Vaza', 'Bijela', 'N', '12345678959', '2021-06-18', 2018, 1, 30, 'Metal'),
+('Sofa', 'Plava', 'N', '98765432160', '2024-01-01', 2021, 1, 60, 'Plastika');
+
+
+-- SELECT * FROM proizvod;
+
+CREATE TABLE IF NOT EXISTS kategorije (
+  MaterijalIzrade VARCHAR(40), 
+  NazivKategorije VARCHAR(255) NOT NULL, 
+  ZastarjeliModel INT(1) NOT NULL, 
+  PRIMARY KEY(MaterijalIzrade)
+);
+
+ALTER TABLE proizvod
+ADD KategorijeSifra VARCHAR(40);
+
+ALTER TABLE proizvod
+  ADD CONSTRAINT FK_ProizvodKategorija
+  FOREIGN KEY (KategorijeSifra) REFERENCES kategorije(MaterijalIzrade);
+
+INSERT IGNORE INTO kategorije (MaterijalIzrade, NazivKategorije, ZastarjeliModel) 
+VALUES 
+('Drvo', 'Stolovi', 0),
+('Metal', 'Stolice', 1),
+('Plastika', 'Vaze', 0),
+('Staklo', 'Lampe', 1),
+('Tkanina', 'Sofe', 0),
+('Bambus', 'Ormarići', 1),
+('Kamen', 'Vaze', 0),
+('Papir', 'Stolnjaci', 1),
+('Keramika', 'Posuđe', 0),
+('Aluminij', 'Stolovi', 1),
+('Plastika', 'Stolovi', 0),
+('Drvo', 'Stolice', 1),
+('Metal', 'Vaze', 0),
+('Staklo', 'Lampe', 1),
+('Tkanina', 'Ormarići', 0),
+('Bambus', 'Sofe', 1),
+('Kamen', 'Vaze', 0),
+('Papir', 'Stolnjaci', 1),
+('Keramika', 'Posuđe', 0),
+('Aluminij', 'Stolovi', 1);
+
+
+-- SELECT * FROM kategorije;
+
+CREATE TABLE IF NOT EXISTS ovlasti (
+  sifra VARCHAR(5) NOT NULL,
+  naziv VARCHAR(255) NOT NULL,
+  PRIMARY KEY (sifra)
+);
+
+CREATE TABLE IF NOT EXISTS korisnici (
+  korisnicko_ime VARCHAR(30) NOT NULL,
+  email VARCHAR(50) NOT NULL,
+  prezime VARCHAR(255) NOT NULL,
+  ime VARCHAR(255) NOT NULL,
+  lozinka VARCHAR(255) NOT NULL,
+  ovlast VARCHAR(5) DEFAULT NULL,
+  PRIMARY KEY (korisnicko_ime)
+);
+
+ALTER TABLE korisnici 
+  ADD CONSTRAINT FK_korisnici_ovlast FOREIGN KEY (ovlast)
+    REFERENCES ovlasti(sifra) ON DELETE NO ACTION;
+
+ALTER TABLE proizvod ADD slika VARCHAR(255);
+
+INSERT INTO ovlasti(sifra, naziv) VALUES
+('AD', 'Administrator'),
+('MO', 'Moderator');
+
+INSERT INTO korisnici(korisnicko_ime,email,prezime,ime,lozinka,ovlast) 
+    VALUES('admin','admin@net.hr','Mirko','Vrlec',
+        'jUPY60RIRBTWGhhlm0Q/v+UjmVENpGidU1K9ljHGxRs=','AD'),
+    ('radicev','radicev@net.hr','Radićev','Stjepan',
+        '9OGS0TpjNkgD0+dwSB1lpnsrlAZhsobZwZ5cQEtMOPo=','MO');
