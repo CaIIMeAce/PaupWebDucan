@@ -1,33 +1,45 @@
 ﻿@{
-    ViewBag.Title = "Home Page";
+    ViewBag.Title = "Početna stranica";
 }
 
-<main>
-    <section class="row" aria-labelledby="aspnetTitle">
-        <h1 id="title">ASP.NET</h1>
-        <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-        <p><a href="https://asp.net" class="btn btn-primary btn-md">Learn more &raquo;</a></p>
-    </section>
+<!DOCTYPE html>
+<html lang="hr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+</head>
+<body>
 
-    <div class="row">
-        <section class="col-md-4" aria-labelledby="gettingStartedTitle">
-            <h2 id="gettingStartedTitle">Getting started</h2>
-            <p>
-                ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-                enables a clean separation of concerns and gives you full control over markup
-                for enjoyable, agile development.
-            </p>
-            <p><a class="btn btn-outline-dark" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+    <main class="container">
+        <section class="row" aria-labelledby="mveTitle">
+            <h1 id="title">Međimursko veleučilište u Čakovcu</h1>
+            <p class="lead">Međimursko veleučilište u Čakovcu je visokoškolska ustanova koja pruža obrazovanje u području primijenjenih znanosti i tehnologija.</p>
+            <p><a href="https://www.mev.hr" class="btn btn-primary btn-md">Saznajte više &raquo;</a></p>
         </section>
-        <section class="col-md-4" aria-labelledby="librariesTitle">
-            <h2 id="librariesTitle">Get more libraries</h2>
-            <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-            <p><a class="btn btn-outline-dark" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-        </section>
-        <section class="col-md-4" aria-labelledby="hostingTitle">
-            <h2 id="hostingTitle">Web Hosting</h2>
-            <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-            <p><a class="btn btn-outline-dark" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-        </section>
-    </div>
-</main>
+
+        <div class="row">
+            <section class="col-md-4" aria-labelledby="studijTitle">
+                <h2 id="studijTitle">Studiji</h2>
+                <p>
+                    Međimursko veleučilište nudi različite studijske programe iz područja informacijskih tehnologija, ekonomije, strojarstva i drugih područja.
+                </p>
+                <p><a class="btn btn-outline-dark" href="https://www.mev.hr/studijski-programi/">Saznajte više &raquo;</a></p>
+            </section>
+            <section class="col-md-4" aria-labelledby="znanostTitle">
+                <h2 id="znanostTitle">Kvaliteta</h2>
+                <p>Osiguravanje kvalitete na Međimurskom veleučilištu u Čakovcu predstavlja skup sistematičnih aktivnosti koje za cilj imaju utvrđivanje dostignute razine kvalitete na Veleučilištu, 
+                kvalitete postignutih rezultata rada Veleučilišta te utjecaja sustava osiguravanja kvalitete na unapređivanje kvalitete visokog obrazovanja i svih aktivnosti, a u usporedbi sa Standardima i 
+                smjernicama za osiguravanje kvalitete u Europskom prostoru visokog obrazovanja ili ESG standardima.</p>
+                <p><a class="btn btn-outline-dark" href="https://www.mev.hr/kvaliteta/">Saznajte više &raquo;</a></p>
+            </section>
+            <section class="col-md-4" aria-labelledby="smjestajTitle">
+                <h2 id="smjestajTitle">Smještaj</h2>
+                <p>Studentima je osiguran smještaj u studentskim domovima u Čakovcu uz povoljne uvjete i sve potrebne sadržaje.</p>
+                <p><a class="btn btn-outline-dark" href="https://www.mev.hr/studomck/">Saznajte više &raquo;</a></p>
+            </section>
+        </div>
+    </main>
+
+</body>
+</html>
