@@ -12,6 +12,7 @@ namespace PaupWebDucan.Models
     {
         [Key]
         [Display(Name ="Skladišni broj")]
+        [Required(ErrorMessage ="Skladišni broj je obavezan")]
         public int SkladisniBroj { get; set; }
 
 

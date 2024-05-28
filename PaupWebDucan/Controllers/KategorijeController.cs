@@ -112,9 +112,15 @@ namespace PaupWebDucan.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(string id)
         {
+            var proizvod = db.PopisProizvodaBaze.FirstOrDefault(x => x.KategorijeSifra == id);
+
             Kategorije kategorije = db.PopisKategorija.Find(id);
-            db.PopisKategorija.Remove(kategorije);
-            db.SaveChanges();
+            if (proizvod == null)
+            {
+                db.PopisKategorija.Remove(kategorije);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
             return RedirectToAction("Index");
         }
 

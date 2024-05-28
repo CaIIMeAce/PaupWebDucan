@@ -96,7 +96,10 @@ VALUES
 ('Keramika', 'Posuđe', 0),
 ('Aluminij', 'Stolovi', 1);
 
+<<<<<<< HEAD
+=======
 
+>>>>>>> adacf3752fa88861b57f9edf921ce16a19dcec36
 -- SELECT * FROM kategorije;
 
 CREATE TABLE IF NOT EXISTS ovlasti (

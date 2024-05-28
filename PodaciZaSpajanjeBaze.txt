@@ -1,0 +1,16 @@
+
+
+
+Username= MirkoVrlec
+host: localhost
+password: 123456789
+
+
+DBime=PaupWebSkladiste
+charset= utf-8
+collation=utf8_general_ci
+
+
+Korisnici	Username	Lozinka
+admin		admin		lozinka123
+moderator	radicev		lozinka321
